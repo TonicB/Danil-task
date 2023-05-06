@@ -1,13 +1,28 @@
 import path from 'path'
 import dotenv from 'dotenv'
-dotenv.config({path: path.join(__dirname, '/.env')})
 import express from 'express'
 import {sequelize} from './db'
-const message = "Hi"
-console.log(message)
+import { User, Bascet, BascetDevice, Device, Type, Brand, Raiting, DeviceInfo, TypeBrand } from './models/models'
+import cors from 'cors'
+import fileUpload from 'express-fileupload'
+import { router } from './routes/index'
+import { errorHandlingMiidleware } from './middlewares/ErrorHandlingMiddleware'
+
+dotenv.config({path: path.join(__dirname, '/.env')})
 
 const PORT = process.env.PORT 
 const app = express()
+
+app.use(cors())
+app.use(express.json())
+app.use(express.static(path.resolve(__dirname, 'static')))
+app.use(fileUpload({}))
+app.use('/api', router)
+//Обработка ошибок, последний middleware
+app.use(errorHandlingMiidleware)
+// app.get('/', (req, res) => {
+//   res.status(200).json({message: 'Working!!!'})
+// })
 
 const start = async () => {
   try {
@@ -20,4 +35,3 @@ const start = async () => {
 }
 
 start()
-

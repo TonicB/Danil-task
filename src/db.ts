@@ -12,7 +12,7 @@ declare const process : {
     DB_PORT: number,
   }
 }
-
+// конфигурируем базу данных с помощью создания объекта класса Sequelize
 export const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,

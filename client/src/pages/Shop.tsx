@@ -1,7 +1,5 @@
 import React, {useEffect} from "react";
 import { Container, Row, Col } from 'react-bootstrap'
-import TypeBar from '../components/TypeBar'
-import BrandBar from '../components/BrandBar'
 import UserList from '../components/DeviceList'
 import { useDispatch } from "react-redux";
 

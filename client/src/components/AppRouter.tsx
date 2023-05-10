@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { authRoutes, publicRoutes } from '../routes'
 import { SHOP_ROUTE } from '../utils/consts'
 import { store } from '../storeRedax'
 import { Provider, useSelector } from 'react-redux';

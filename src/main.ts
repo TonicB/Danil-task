@@ -20,9 +20,9 @@ app.use(fileUpload({}))
 app.use('/api', router)
 //Обработка ошибок, последний middleware
 app.use(errorHandlingMiidleware)
-// app.get('/', (req, res) => {
-//   res.status(200).json({message: 'Working!!!'})
-// })
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'Working!!!'})
+})
 
 const start = async () => {
   try {

@@ -34,6 +34,18 @@ export const BascetDevice = sequelize.define('bascet_device', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true } ,
 })
 
+export interface Device extends Model< 
+    InferAttributes<Device>, 
+    InferCreationAttributes<Device> 
+  > { 
+  id: string; 
+  deviceId: string; 
+  name: string; 
+  price: string; 
+  rating: string; 
+  img: string; 
+  }
+
 export const Device = sequelize.define('device', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true } ,
   deviceId: { type: DataTypes.STRING, unique: true, allowNull: false } ,

@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Container } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDevice } from "../storeRedax/action-creators/devises";
-import { store } from '../storeRedax'
 import DeviceItem from "../components/DeviceItem";
-import { RootState } from "../storeRedax/reducers";
 import { Device } from "../../../src/models/models";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import { useActions } from "../hooks/useActions";
 
 const Products = () => {
-  const [response, setResponse] = useState<any>(null); // Используем состояние для хранения ответа
-
+  const {devices} = useSelector((state: any) => state.devices);
+  const {fetchDevice} = useActions()
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get('http://localhost:5000/api/device');
-      setResponse(response.data); // Сохраняем ответ в состояние
-    };
-
-    fetchData();
+    fetchDevice();
   }, []);
 
   return (
     <Container>
       <div>
         PRODUCTS
-        {response && response.length > 0 && response.map((device: Device) => (
-          <DeviceItem device={device} /> // Передаем каждое устройство в DeviceItem
+        {devices && devices.length > 0 && devices.map((device: Device) => (
+          <DeviceItem device={device}/> // Передаем каждое устройство в DeviceItem
         ))}
       </div>
     </Container>

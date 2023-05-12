@@ -1,7 +1,6 @@
 import { Dispatch } from "redux"
 import axios from "axios"
 import { DeviceAction, DeviceActionTypes } from "../../types/device"
-import { Device } from "../../../../src/models/models"
 
 export const fetchDevice = () => {
   return async (dispatch: Dispatch<DeviceAction>) =>{
@@ -9,12 +8,11 @@ export const fetchDevice = () => {
       dispatch({type: DeviceActionTypes.FETCH_DEVICES})
       const responce = await axios.get('http://localhost:5000/api/device')
         dispatch({type: DeviceActionTypes.FETCH_DEVICES_SUCCESS, payload: responce.data})
-        // console.log(responce.data)
     } catch (e) {
       console.log(e)
       dispatch({
         type: DeviceActionTypes.FETCH_DEVICES_ERROR,
-        payload: 'Users loading error'
+        payload: 'Devices loading error'
       })
     }
   }
@@ -31,7 +29,7 @@ export const setDevice = (data: FormData) => {
       console.log(e)
       dispatch({
         type: DeviceActionTypes.CREATE_DEVICE_ERROR,
-        payload: 'Users loading error'
+        payload: 'Devices loading error'
       })
     }
   }

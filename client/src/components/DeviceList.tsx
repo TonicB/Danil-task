@@ -1,10 +1,8 @@
 import React, {useContext} from "react";
 import {observer} from "mobx-react-lite"
 // import { Context } from "../index"
-import DeviceStore from "../store/DeviceStore";
 import { Row } from 'react-bootstrap';
 import DeviceItem from "./DeviceItem";
-import Device from "../store/DeviceStore";
 
 
 

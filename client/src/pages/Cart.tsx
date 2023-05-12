@@ -1,28 +1,28 @@
 import React, {useEffect} from "react";
 import { Container, Row, Col } from 'react-bootstrap'
-import UserList from '../components/DeviceList'
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import axios from 'axios';
+import CartDevice from "../components/CartDevice";
+import { Device } from "../../../src/models/models";
+import { store } from "../storeRedax";
+
 
 
 
 const Cart = () => {
+
+  console.log(store.getState())
+  const response = store.getState().cartDevices.cartDevices
+
   return (
     <Container>
-      CART
-      {/* <Row className='mt-2'>
-        <Col md={3}>
-          <TypeBar/>
-          
-        </Col>
-        <Col md={9}>
-          <BrandBar/>
-        </Col>
-          
-      </Row> */}
-
-          {/* <UserList/> */}
+      <div>
+        {response && response.length > 0 && response.map((device: Device) => (
+          <CartDevice cartDevice={device}/>
+        ))}
+      </div>
     </Container>
-  )
+  );
 }
 
 export default Cart

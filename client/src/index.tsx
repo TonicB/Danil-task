@@ -6,9 +6,6 @@ import App from './App';
 import { Provider } from 'react-redux';
 import {store} from "./storeRedax";
 import { BrowserRouter } from 'react-router-dom';
-// dotenv.config({path: path.join(__dirname, '/.env')})
-
-console.log(process.env.REACT_APP_API_URL)
 
 
 

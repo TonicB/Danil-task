@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Container, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 const Create: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
   const [image, setImage] = useState<File | null>(null);
-  const dispatch = useDispatch();
 
   const submitHandler = async () => {
     const formData = new FormData();
@@ -15,29 +13,17 @@ const Create: React.FC = () => {
     formData.append('price', price.toString());
   
     if (image) {
-      
-        // Добавляем данные изображения в форму
         formData.append('img', image);
-      
-        // Отправляем форму на сервер
         axios.post('http://localhost:5000/api/device', formData)
-      
-      
-      
-      // Читаем файл как URL-адрес данных
     } else {
-      // Если изображение не выбрано, просто отправляем форму без него
       axios.post('http://localhost:5000/api/device', formData)
         .then(response => {
-          // Обработка успешного ответа
         })
         .catch(error => {
           console.log(error);
-          // Обработка ошибки
         });
     }
   };
-  
 
   return (
      <Container
